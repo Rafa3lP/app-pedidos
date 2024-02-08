@@ -1,7 +1,7 @@
 import { CategoryButton } from "@/components/category-button";
 import { Header } from "@/components/header";
 import { Product } from "@/components/product";
-import { CATEGORIES, MENU } from "@/utils/data/products";
+import { CATEGORIES, MENU, ProductProps } from "@/utils/data/products";
 import { useState, useRef } from "react";
 import { FlatList, SectionList, Text, View } from "react-native";
 import { Link } from "expo-router";
@@ -16,7 +16,7 @@ export default function Home() {
     0
   );
 
-  const sectionListRef = useRef<SectionList>(null);
+  const sectionListRef = useRef<SectionList<ProductProps>>(null);
 
   function handleCategorySelect(_category: string) {
     setCategory(_category);
@@ -32,7 +32,6 @@ export default function Home() {
   return (
     <View className="flex-1 pt-8">
       <Header title="Faça seu pedido" cartQuantityItems={cartQuantityItems} />
-
       <FlatList
         data={CATEGORIES}
         keyExtractor={(item) => item}
